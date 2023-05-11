@@ -1,0 +1,115 @@
+:root {
+    --primary-color: rgb(124, 58, 237);
+    --secondary-color: rgb(218, 98, 196);
+    --gradient: linear-gradient(45deg, rgb(var(--accent)), #da62c4 30%, white 60%);
+}
+
+* {
+    /* Below is the standard CSS code one should add to get rid of default margins and padding which most of tge HTML elements have */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Roboto", sans-serif;
+    user-select: none;
+}
+
+body {
+    position: relative;
+    min-height: 100vh;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+a {
+	color: rgb(0,100,200);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: rgb(0,80,160);
+}
+
+label {
+	display: block;
+}
+
+input, button, select, textarea {
+	font-family: inherit;
+	font-size: inherit;
+	-webkit-padding: 0.4em 0;
+	padding: 0.4em;
+	margin: 0 0 0.5em 0;
+	box-sizing: border-box;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+}
+
+input:disabled {
+	color: #ccc;
+}
+
+button {
+	color: #333;
+	background-color: #f4f4f4;
+	outline: none;
+}
+
+button:disabled {
+	color: #999;
+}
+
+button:not(:disabled):active {
+	background-color: #750f0f;
+}
+
+button:focus {
+	border-color: #666;
+}
+
+.cell {
+	border-radius: 4px 4px 0 0;
+	display: flex;
+	align-items: flex-start;
+	flex: 0.5;
+	width: 0.000001%;
+	margin: 1px;
+	background-color: #d6d6d6;
+	resize: horizontal;
+	position: relative;
+	transition: all 0.2s ease-in;
+}
+
+.cell.done {
+	background-color: #9cec5b;
+	border-color: #9cec5b;
+	color: white;
+	transition: all 0.2s ease-out;
+}
+
+.cell.visited {
+	border-color: #6184d8;
+	background-color: #6184d8;
+	color: white;
+	transition: 0.5s;
+}
+
+.cell.current {
+	border-color: #50c5b7;
+	background-color: #50c5b7;
+	color: white;
+	transition: all 0.2s ease-out;
+}
+
+.cell.min {
+	background-color: #ff1493;
+	border-color: #ff1493;
+	color: white;
+	transition: all 0.2s ease-out;
+}
