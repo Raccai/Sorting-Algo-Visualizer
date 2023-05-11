@@ -6,6 +6,7 @@
 	let shuffledArray = [];
 	let isPaused = false;
 	let isDone = false;
+	let isDisabled = false;
 	let _i, _j;
 	let selectedAlgo, selectedSpeed, selectedSize;
 	let compares = 0;
@@ -57,6 +58,7 @@
 			swap(step, minVal, 1);
 			await sleep();
 		}
+		done();
 	}
 
 	// QUICK SORT
@@ -88,6 +90,7 @@
 		}
 
 		await sort(0, shuffledArray.length - 1)
+		done();
 	}
 
 	// INSERTION SORT
@@ -101,6 +104,7 @@
 			}
 			shuffledArray[j+1] = currenVal;
 		}
+		done();
 	}
 	
 	// BUBBLE SORT
@@ -113,6 +117,7 @@
 				}
 			}
 		}
+		done();
 	}
 
 	//HELPER FUNCTIONS
@@ -149,6 +154,7 @@
 	const sort = () => {
 		compares = 0;
 		swaps = 0;
+		isDisabled = true;
 		if (selectedAlgo.id === 1) bubble();
 		if (selectedAlgo.id === 2) insertion();
 		if (selectedAlgo.id === 3) quick();
@@ -157,7 +163,8 @@
 
 	// IS CALLED WHEN AN ALGO FINISHES
 	const done = () => {
-		// will add to this later on
+		console.log("Works");
+		isDisabled = false;
 	}
 
 	// WILL FIX THIS, BUGGY--IT STOPS BUT DOESN'T START
@@ -180,14 +187,14 @@
 <main>
 	<div class="container">
 		<div class="inputs">
-			<select bind:value={selectedAlgo}>
+			<select bind:value={selectedAlgo} disabled={isDisabled}>
 				{#each algos as algo}
 					<option value={algo}>
 						{algo.algo}
 					</option>
 				{/each}
 			</select>
-			<select bind:value={selectedSize} on:change={getShuffledArray}>
+			<select bind:value={selectedSize} on:change={getShuffledArray} disabled={isDisabled}>
 				{#each sizes as size}
 					<option value={size}>
 						{size.size}
@@ -201,9 +208,9 @@
 					</option>
 				{/each}
 			</select>
-			<button on:click={sort}>Sort</button>
-			<button on:click={getShuffledArray}>New Array</button>
-			<button on:click={pausePlay}>Pause/Play</button>
+			<button on:click={sort} disabled={isDisabled}>Sort</button>
+			<button on:click={getShuffledArray} disabled={isDisabled}>New Array</button>
+			<!-- <button on:click={pausePlay} disabled={isDisabled}>Pause/Play</button> -->
 			<div class="data">
 				<p>Compares: {compares}</p>
 				<p>Swaps: {swaps}</p>
